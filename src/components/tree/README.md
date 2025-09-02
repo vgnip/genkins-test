@@ -1,5 +1,8 @@
-- 该树为公用组件不含业务逻辑，只负责公用部分的展示渲染等交互
-  支持以下参数( 具体用法参考demo 路由：/compDemo)
+## 概述
+
+该树为公用组件不含业务逻辑，只负责公用部分的展示渲染等交互 支持以下参数( 具体用法参考 demon：./test-tree)
+
+```
   treeName?: string // 组件引用名称 用于事件区分
   nodeKey?: string // 唯一索引
   nodeLabel?: string // 显示字段
@@ -28,14 +31,15 @@
   node: any,
   options?: TreeItemOptions[]
   ) => TreeItemOptions[] // 下拉项过滤
+```
 
-- 注意事项
+## 注意事项
 
-  1. 节点分页加载按钮占用node节点
+  1. 节点分页加载按钮占用 node 节点
   2. 未展示出来的节点不可以定位
-  3. 未展示出来的节点无法通过id进行获取
-  4. 本地分页时加载按钮会存储本地未展示的list数据
-  5. 非本地分页时当加载的节点数据>=nodePageSize时加载按钮会展示出来
+  3. 未展示出来的节点无法通过 id 进行获取
+  4. 本地分页时加载按钮会存储本地未展示的 list 数据
+  5. 非本地分页时当加载的节点数据>=nodePageSize 时加载按钮会展示出来
   6. 新增节点默认排在最后的不建议开启分页功能（节点默认追加在更多操作节点前，需要自行处理其余情况）
 
-- 更多详细的用法见 src/components/tree/bo 下的 event和treeBO 文件
+- 更多详细的用法见 src/components/tree/bo 下的 event 和 treeBO 文件
