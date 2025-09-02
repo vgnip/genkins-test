@@ -38,4 +38,4 @@
   5. 非本地分页时当加载的节点数据>=nodePageSize时加载按钮会展示出来
   6. 新增节点默认排在最后的不建议开启分页功能（节点默认追加在更多操作节点前，需要自行处理其余情况）
 
-- 更多详细的用法见 src/components/common/tree/bo 下的 event和treeBO 文件
+- 更多详细的用法见 src/components/tree/bo 下的 event和treeBO 文件

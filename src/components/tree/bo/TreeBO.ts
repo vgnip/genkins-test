@@ -1,5 +1,36 @@
-- 该树为公用组件不含业务逻辑，只负责公用部分的展示渲染等交互
-  支持以下参数( 具体用法参考demo 路由：/compDemo)
+import type { TREE_DRAG_TYPE } from './Event'
+
+/** 下拉项 */
+export interface TreeItemOptions {
+  label: string // 显示名
+  type: string // 事件类型
+  class?: string // 样式
+  isDialog?: boolean // 是否为弹窗事件 用于操作节点背景高亮
+}
+/** 节点基本信息 */
+export interface TreeNodeBaseInfoBO {
+  label: string // 节点名称
+  id: string // 节点id
+  isNodePageLoadBtnData?: boolean // 是否为加载按钮
+  nodePageTagId?: string // 分页加载按钮id
+  localNodeOtherListData?: TreeNodeBaseInfoBO[] // 本地分页加载节点数据
+  [key: string]: any
+}
+export enum RequestStatus {
+  PENDING = 1,
+  FINISH = 2,
+  FAILED = 3,
+}
+// 树节点分页请求数据
+export interface TreeFetchBaseData {
+  [key: string]: any
+  page?: number
+  size?: number
+  parentNodeId?: string
+  preNodeId?: string
+}
+// 树组件配置
+export interface TreePropsBaseBO {
   treeName?: string // 组件引用名称 用于事件区分
   nodeKey?: string // 唯一索引
   nodeLabel?: string // 显示字段
@@ -7,9 +38,9 @@
   closePopOnClick?: boolean // 点击下拉项时关闭pop
   class?: string // 树组件样式
   eventBus?: any // 事件监听
-  fetch?: (data?: TreeFetchBaseData, node?: any) => Promise<any[]> // 数据加载 异步请求
+  fetch?: (data?: TreeFetchBaseData | any, node?: any) => Promise<any[]> // 数据加载 异步请求
   lazy?: boolean // 是否懒加载
-  nodePage?: boolean // 是否分页加载 默认false
+  nodePage?: boolean // 是否分页加载 默认true
   nodePageLocal?: boolean // 是否本地分页加载（所在层级是否本地） 默认true
   nodePageSize?: number // 分页大小 默认50
   options?: TreeItemOptions[] // 下拉项集
@@ -24,18 +55,8 @@
   allowDrop?: (draggingNode: any, dropNode: any, type: TREE_DRAG_TYPE) => boolean // 允许放置
   allowDrag?: (node: any) => boolean // 允许拖拽
   optionsFilter?: (
-  data: TreeNodeBaseInfoBO,
-  node: any,
-  options?: TreeItemOptions[]
+    data: TreeNodeBaseInfoBO,
+    node: any,
+    options?: TreeItemOptions[]
   ) => TreeItemOptions[] // 下拉项过滤
-
-- 注意事项
-
-  1. 节点分页加载按钮占用node节点
-  2. 未展示出来的节点不可以定位
-  3. 未展示出来的节点无法通过id进行获取
-  4. 本地分页时加载按钮会存储本地未展示的list数据
-  5. 非本地分页时当加载的节点数据>=nodePageSize时加载按钮会展示出来
-  6. 新增节点默认排在最后的不建议开启分页功能（节点默认追加在更多操作节点前，需要自行处理其余情况）
-
-- 更多详细的用法见 src/components/common/tree/bo 下的 event和treeBO 文件
+}
