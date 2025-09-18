@@ -234,6 +234,7 @@ function nodeDrop(draggingNode: any, dropNode: any, dropType: TREE_DRAG_TYPE) {
   } else {
     nodeDropEvent(instance.exposed, draggingNode, dropNode, dropType);
   }
+  
 }
 /** 节点打开 */
 function nodeExpand() {

@@ -1,0 +1,27 @@
+.common-form {
+  :deep(.el-form-item.is-required:not(.is-no-asterisk).asterisk-left > .el-form-item__label:before) {
+    width: 6px !important;
+    margin-top: 3px;
+  }
+  .isView {
+    margin-bottom: 12px;
+    :deep(.el-form-item) {
+      margin-bottom: 0;
+    }
+    :deep(.el-form-item__label) {
+      height: 22px;
+      line-height: 22px;
+      justify-content: flex-start;
+    }
+    :deep(.el-form-item__content) {
+      line-height: 22px;
+    }
+  }
+  :deep(.el-row) {
+    .el-col:last-child {
+      .el-form-item:not(.is-error) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
